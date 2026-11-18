@@ -2,6 +2,8 @@
 - name: Create Azure Resource Group
   hosts: localhost
   connection: local
+  vars_files:
+    - "../vars/default_vars.yml"
   tasks:
     - name: Create resource group
       azure.azcollection.azure_rm_resourcegroup:

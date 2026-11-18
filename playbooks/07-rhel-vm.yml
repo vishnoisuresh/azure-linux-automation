@@ -2,6 +2,8 @@
 - name: Create Azure RHEL VM
   hosts: localhost
   connection: local
+  vars_files:
+    - "../vars/default_vars.yml"
   tasks:
     - name: Set SSH key fact
       ansible.builtin.set_fact:

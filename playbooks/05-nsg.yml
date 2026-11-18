@@ -2,6 +2,8 @@
 - name: Create Azure NSG
   hosts: localhost
   connection: local
+  vars_files:
+    - "../vars/default_vars.yml"
   tasks:
     - name: Create NSG with SSH allowed
       azure.azcollection.azure_rm_securitygroup:

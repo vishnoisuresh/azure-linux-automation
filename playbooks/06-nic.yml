@@ -2,6 +2,8 @@
 - name: Create Azure NIC
   hosts: localhost
   connection: local
+  vars_files:
+    - "../vars/default_vars.yml"
   tasks:
     - name: Create virtual network interface card
       azure.azcollection.azure_rm_networkinterface:
