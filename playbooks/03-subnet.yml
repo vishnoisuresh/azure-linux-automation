@@ -1,0 +1,11 @@
+---
+- name: Create Azure Subnet
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Create subnet
+      azure.azcollection.azure_rm_subnet:
+        resource_group: "{{ resource_group_name }}"
+        name: "{{ subnet_name }}"
+        address_prefix: "{{ subnet_cidr }}"
+        virtual_network: "{{ vnet_name }}"

@@ -1,0 +1,31 @@
+---
+- name: Create Azure RHEL VM
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Set SSH key fact
+      ansible.builtin.set_fact:
+        rhel_ssh_public_keys:
+          - path: "/home/{{ rhel_admin_user }}/.ssh/authorized_keys"
+            key_data: "{{ rhel_public_key }}"
+      when: rhel_public_key is defined
+
+    - name: Create VM
+      azure.azcollection.azure_rm_virtualmachine:
+        resource_group: "{{ resource_group_name }}"
+        name: "{{ rhel_vm_name }}"
+        vm_size: "{{ rhel_vm_size }}"
+        admin_username: "{{ rhel_admin_user }}"
+        network_interfaces: "{{ rhel_nic_name }}"
+        ssh_password_enabled: false
+        ssh_public_keys: "{{ rhel_ssh_public_keys | default(omit) }}"
+        image:
+          offer: RHEL
+          publisher: RedHat
+          sku: "{{ rhel_vm_sku }}"
+          version: latest
+      register: vm_output
+
+    - name: Display VM Info
+      ansible.builtin.debug:
+        msg: "VM {{ rhel_vm_name }} is created. Admin user: {{ rhel_admin_user }}"

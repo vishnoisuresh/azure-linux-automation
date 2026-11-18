@@ -1,0 +1,20 @@
+---
+# Default Global Variables
+region: "eastus"
+resource_group_name: "customer-linux-rg"
+vnet_name: "linux-vnet"
+vnet_cidr: "10.0.0.0/16"
+subnet_name: "linux-subnet"
+subnet_cidr: "10.0.1.0/24"
+network_sec_group_name: "linux-nsg"
+
+# VM Defaults
+rhel_vm_name: "rhel-server-01"
+rhel_vm_size: "Standard_DS1_v2"
+rhel_vm_sku: "9_6"
+rhel_admin_user: "azureuser"
+rhel_public_ip_name: "rhel-pub-ip"
+rhel_nic_name: "rhel-nic"
+
+# Logic
+survey_public_ip: "True"

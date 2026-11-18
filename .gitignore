@@ -1,0 +1,9 @@
+# .gitignore
+*.retry
+env/
+.azure/
+*.pem
+*.key
+vault_pass.txt
+.DS_Store
+*.swp

@@ -1,0 +1,22 @@
+---
+- name: Create Azure NSG
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Create NSG with SSH allowed
+      azure.azcollection.azure_rm_securitygroup:
+        resource_group: "{{ resource_group_name }}"
+        name: "{{ network_sec_group_name }}"
+        rules:
+          - name: Allow-SSH
+            protocol: Tcp
+            destination_port_range: 22
+            access: Allow
+            priority: 1001
+            direction: Inbound
+          - name: Allow-HTTP
+            protocol: Tcp
+            destination_port_range: 80
+            access: Allow
+            priority: 1002
+            direction: Inbound

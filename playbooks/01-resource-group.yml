@@ -1,0 +1,14 @@
+---
+- name: Create Azure Resource Group
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Create resource group
+      azure.azcollection.azure_rm_resourcegroup:
+        name: "{{ resource_group_name }}"
+        location: "{{ region }}"
+      register: rg_output
+
+    - name: Debug RG status
+      ansible.builtin.debug:
+        var: rg_output
